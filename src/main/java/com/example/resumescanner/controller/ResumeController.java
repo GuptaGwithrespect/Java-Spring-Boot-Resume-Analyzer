@@ -64,6 +64,12 @@ public class ResumeController {
         ));
         roleSkillMap.put("Customer Support Executive", Arrays.asList("Communication", "CRM Tools", "Problem Solving", "Email Etiquette",
                 "Call Handling", "Active Listening", "Typing Skills", "MS Office", "Teamwork"));
+        roleSkillMap.put("Android Developer", Arrays.asList(
+                "Java", "Kotlin", "Android Studio", "Android SDK", "Activity Lifecycle",
+                "RecyclerView", "XML Layouts", "Intents", "Fragments", "Firebase",
+                "Git", "REST API", "Material Design", "SQLite", "Debugging"
+        ));
+
     }
 
     @Autowired
