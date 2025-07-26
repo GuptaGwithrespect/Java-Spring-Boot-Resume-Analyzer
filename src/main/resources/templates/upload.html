@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Scanner - Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Upload Your Resume</h2>
+
+    <form action="/upload" class="space-y-4" enctype="multipart/form-data" method="post"
+          onsubmit="return validateForm()">
+
+        <!-- Job Role Input -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="jobRole">Select Job Role <span
+                    class="text-red-500">*</span></label>
+            <input class="block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200 focus:outline-none" id="jobRole" list="jobRoles" name="jobRole"
+                   required>
+            <datalist id="jobRoles">
+                <option value="Java Developer">
+                <option value="Frontend Developer">
+                <option value="Backend Developer">
+                <option value="Full Stack Developer">
+                <option value="Data Analyst">
+                <option value="Data Scientist">
+                <option value="UI/UX Designer">
+                <option value="Accountant">
+                <option value="Human Resource(HR)">
+                <option value="Sales Executive / Manager">
+                <option value="Digital Marketer">
+                <option value="Content Writer">
+                <option value="Business Analyst">
+                <option value="Customer Support Executive"></option>
+
+            </datalist>
+        </div>
+
+        <!-- Resume Upload -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="resumeFile">Select Resume (PDF/DOC) <span
+                    class="text-red-500">*</span></label>
+            <input accept=".pdf,.doc,.docx" class="block w-full text-sm text-gray-800 file:mr-4 file:py-2 file:px-4
+                      file:rounded-lg file:border-0
+                      file:text-sm file:font-semibold
+                      file:bg-blue-600 file:text-white
+                      hover:file:bg-blue-700 transition" id="resumeFile" name="resumeFile"
+                   required
+                   type="file">
+        </div>
+
+        <!-- File Preview -->
+        <div class="hidden mt-2 text-sm text-gray-600 bg-gray-50 p-2 rounded-lg border border-gray-200"
+             id="filePreview">
+            <strong>Selected File:</strong> <span id="fileName"></span><br>
+            <strong>Size:</strong> <span id="fileSize"></span>
+        </div>
+
+        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition"
+                type="submit">
+            Upload & Scan
+        </button>
+    </form>
+</div>
+
+<script src="../static/js/upload.js"></script>
+
+</body>
+</html>

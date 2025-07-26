@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta charset="UTF-8">
+    <title>Resume Summary & Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+<h1 class="text-4xl font-bold text-center text-indigo-700 my-4">Resume Analysis Summary</h1>
+<div class="flex">
+    <div class="max-w-2xl mx-5 my-8 p-6 bg-white rounded-xl shadow-lg">
+
+
+        <!-- Section 1: Resume Overview -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-3">📋 Resume Summary</h2>
+            <div class="bg-gray-100 p-4 rounded border text-sm space-y-2 leading-relaxed">
+                <p><strong class="text-xl font-bold">Skills Identified:</strong></p>
+                <p class="text-l font-semibold">Selected Role: <span th:text="${matchResult.selectedRole}"></span></p>
+                <p class="text-l font-semibold">Matched Skills: <span th:text="${matchResult.matched}"></span></p>
+                <p class="text-l font-semibold">Missing Skills: <span th:text="${matchResult.missing}"></span></p>
+
+                <p><strong class="text-xl font-bold">Experience Summary:</strong> <span
+                        th:text="${matchResult.experienceSummary}"></span></p>
+                <p><strong class="text-xl font-bold">Overall Resume Strength:</strong> <span
+                        class="text-green-600 font-semibold" th:text="${matchResult.resumeStrength}"></span></p>
+            </div>
+        </section>
+
+        <!-- Section 2: Rating System -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-3">⭐ Resume Ratings (Out of 10)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div class="bg-gray-100 p-4 rounded shadow">
+                    <p class="text-lg font-medium">Technical Skills</p>
+                    <p class="text-2xl font-bold text-indigo-600" th:text="${matchResult.ratingSkills}"></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded shadow">
+                    <p class="text-lg font-medium">Experience Relevance</p>
+                    <p class="text-2xl font-bold text-indigo-600" th:text="${matchResult.ratingExperience}"></p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded shadow">
+                    <p class="text-lg font-medium">Overall Resume Score</p>
+                    <p class="text-2xl font-bold text-indigo-600" th:text="${matchResult.ratingOverall}"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Keyword Match Table -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-3">🔍 Keyword Match Result</h2>
+            <table class="w-full text-sm border border-gray-300 rounded">
+                <thead class="bg-indigo-100 text-indigo-800 font-semibold">
+                <tr>
+                    <th class="py-2 px-4 border-b">Keyword</th>
+                    <th class="py-2 px-4 border-b">Matched</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="hover:bg-gray-50" th:each="entry : ${result}">
+                    <td class="py-2 px-4 border-b" th:text="${entry.key}">Keyword</td>
+                    <td class="py-2 px-4 border-b">
+                        <span th:classappend="${entry.value} ? 'text-green-600 font-bold' : 'text-red-600 font-bold'"
+                              th:text="${entry.value} ? '✔ Yes' : '❌ No'">
+                            Match Result
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Section 4: Suggestions -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-3">📝 Suggestions to Improve</h2>
+            <ul class="list-disc pl-6 text-gray-700 text-sm space-y-2">
+                <p th:text="${matchResult.suggestionImp}"></p>
+            </ul>
+        </section>
+
+        <!-- Section 5: Upload Again -->
+        <div class="text-center">
+            <a class="inline-block bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition" href="/">
+                Upload Another Resume
+            </a>
+        </div>
+    </div>
+    <!-- Section 6: Resume Text -->
+    <section class="mb-8">
+        <div class="max-w-2xl mx-5 my-8 p-8 bg-white rounded-xl shadow-lg">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-3">📄 Resume Content Preview</h2>
+            <div class="bg-gray-100 p-4 rounded-md h-[800px] overflow-y-scroll  border border-gray-300 text-sm whitespace-pre-line">
+                <p th:text="${resumeText}">Resume content will appear here...</p>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
