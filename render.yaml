@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: resume-analyzer
+    env: java
+    buildCommand: "./mvnw clean install"
+    startCommand: "java -jar target/*.jar"
+    plan: free
+    branch: main
+    buildFilter:
+      paths:
+        - "src/**"
+        - "pom.xml"
